@@ -112,6 +112,8 @@ h1,h2,h3,h4{font-family:var(--sans);color:var(--ink);font-weight:900;line-height
 .ticker .track{display:flex;white-space:nowrap;animation:marq 38s linear infinite}
 .ticker .t{display:inline-flex;align-items:center;gap:9px;padding:16px 26px;font-size:13px;font-weight:700;color:var(--ink)}
 .ticker .t .av{width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.ticker .t .dmd{color:var(--blue);display:inline-flex}.ticker .t .dmd svg{width:17px;height:17px}
+.ticker .t::after{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--line);margin-left:26px}
 .ticker .t .vchk{color:var(--blue)}.ticker .t .vchk svg{width:15px;height:15px}
 .ticker .t .st{color:#f5a623;letter-spacing:1px}
 
@@ -726,8 +728,8 @@ main{animation:viewfade .45s var(--ease)}
 /* ============ PERFORMANCE & MOBILE FIXES ============ */
 /* kill any horizontal overflow site-wide */
 html,body{max-width:100%;overflow-x:hidden}
-*{min-width:0}
 img{max-width:100%}
+.ticker .t{flex:0 0 auto}
 
 /* checkout: let grid columns actually shrink on small screens */
 .colayout>*{min-width:0}
@@ -1455,9 +1457,9 @@ function buildHome(){
     ].filter(x=>x[0]);
     $("#pvGrid").innerHTML=pv.map((c,i)=>`<div class="pv${i===0?' wide':''}"><img loading="lazy" src="${c[0]}" alt="${c[1]}"><div class="pvcap"><b>${c[1]}</b><span>${c[2]}</span></div></div>`).join("");
   }
-  // ticker
-  const names=["Marcus D.","Andre K.","Sofia R.","Khalid M.","Jay T.","Leon P.","Maya S.","Deon W."];
-  $("#tickerTrack").innerHTML=[...names,...names].map(n=>`<span class="t"><span class="av">${n[0]}</span> ${n} <span class="st">★★★★★</span> <span class="vchk"><svg fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg></span></span>`).join("");
+  // moissanite marquee
+  const ticks=["Genuine VVS Moissanite","Passes The Diamond Tester","GRA Certified Stones","D-Color · VVS Clarity","Hand-Set, Fully Iced Out","Stainless Steel · Hypoallergenic","Lifetime Warranty","Free Insured Worldwide Shipping","30-Day Money-Back Guarantee","Same Ice, Fraction Of The Price"];
+  $("#tickerTrack").innerHTML=[...ticks,...ticks].map(t=>`<span class="t"><span class="dmd"><svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 6 3-6"/></svg></span> ${t}</span>`).join("");
   // watch feature bar
   const feats=[
     ["Passes Diamond Tester","Tests as a real diamond","M6 3h12l4 6-10 12L2 9z M2 9h20"],
@@ -1850,7 +1852,7 @@ window.addEventListener("scroll",()=>toTop.classList.toggle("on",scrollY>700));
   let sid=""; try{sid=localStorage.getItem("kp_chat_sid")||"";}catch(e){}
   if(!sid){sid="S-"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);try{localStorage.setItem("kp_chat_sid",sid);}catch(e){}}
   const history=[]; // {role:"user"|"model", text}
-  let busy=false, greeted=false;
+  let busy=false, greeted=false, emailDone=false;
 
   function esc(s){return (s||"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
   function bubble(role,text,typing){
@@ -1867,7 +1869,7 @@ window.addEventListener("scroll",()=>toTop.classList.toggle("on",scrollY>700));
   function greet(){
     if(greeted) return; greeted=true;
     bubble("bot",GREETING);
-    setQuick(["Do they pass a diamond tester?","How much & what's the discount?","Shipping & delivery time","Show me best sellers"]);
+    setQuick(["Get $150 off — join the list","Does it pass a diamond tester?","Shipping & delivery time","Show me best sellers"]);
   }
   function openPanel(){panel.classList.add("on");fab.classList.add("open");panel.setAttribute("aria-hidden","false");greet();setTimeout(()=>input.focus(),200);}
   function closePanel(){panel.classList.remove("on");fab.classList.remove("open");panel.setAttribute("aria-hidden","true");}
@@ -1879,10 +1881,21 @@ window.addEventListener("scroll",()=>toTop.classList.toggle("on",scrollY>700));
     if(!text||busy) return;
     input.value=""; setQuick([]);
     bubble("user",text); history.push({role:"user",text});
+    busy=true; send.disabled=true;
     // capture any email the customer types straight into your list (opt-in via chat)
     var em=(text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/)||[])[0];
-    if(em){ try{KP.saveEmail(em,"chatbot");}catch(e){} }
-    busy=true; send.disabled=true;
+    if(em && !emailDone){
+      try{KP.saveEmail(em,"chatbot");}catch(e){}
+      emailDone=true;
+      const c=bubble("bot","",true);
+      setTimeout(()=>{ c.classList.remove("typing");
+        c.innerHTML="You're on the list 👑 Here's your code: <b>KINGPIN150</b> for $150 off. Anything else I can help you find?";
+        history.push({role:"model",text:"Saved their email. Gave code KINGPIN150."});
+        setQuick(["Show me best sellers","Does it pass a diamond tester?","Shipping & delivery time"]);
+        msgs.scrollTop=msgs.scrollHeight;
+      },600);
+      busy=false; send.disabled=false; input.focus(); return;
+    }
     const t=bubble("bot","",true);
     const url=window.KP_CONFIG.CHAT_WEBHOOK_URL;
     let reply="";
