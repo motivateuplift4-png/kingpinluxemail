@@ -760,6 +760,32 @@ img{max-width:100%}
 /* opt-in microcopy */
 .optin{font-size:11px;line-height:1.4;color:var(--muted);margin-top:10px;max-width:340px}
 .popov .optin{text-align:left;margin:10px auto 0}
+
+/* ===== THE KINGPIN PROMISE (replaces video reviews) ===== */
+.promise-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
+.prcard{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:24px 20px;text-align:center;transition:.25s var(--ease)}
+.prcard:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 12px 30px rgba(20,99,255,.08)}
+.prcard .pic{width:52px;height:52px;border-radius:13px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.prcard .pic svg{width:26px;height:26px;color:var(--blue)}
+.prcard b{display:block;font-size:15px;font-weight:800;color:var(--ink);margin-bottom:6px}
+.prcard .d{font-size:13px;color:var(--muted);line-height:1.5}
+@media(max-width:860px){.promise-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.promise-grid{grid-template-columns:1fr}}
+
+/* ===== EDITORIAL (replaces text reviews) ===== */
+.editorial .ed-inner{max-width:720px;margin:0 auto;text-align:center}
+.editorial .eg{color:var(--blue);font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+.editorial h2{font-size:clamp(26px,3.6vw,38px);font-weight:900;line-height:1.08;margin-bottom:16px;color:var(--ink)}
+.editorial p{font-size:16px;line-height:1.7;color:var(--muted);margin-bottom:26px}
+
+/* ===== PRODUCT TRUST ROW (replaces rating row) ===== */
+.trustrow{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin:4px 0 4px}
+.trustrow .tg{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--ink)}
+.trustrow .tg svg{width:17px;height:17px;color:var(--blue)}
+
+/* product card certified tag */
+.cert-tag{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:var(--blue);margin:2px 0 2px}
+.cert-tag svg{width:14px;height:14px}
 </style>
 </head>
 <body>
@@ -768,7 +794,7 @@ img{max-width:100%}
 
 <!-- ANNOUNCEMENT -->
 <div class="ann"><div class="wrap">
-  <div class="stars-tp"><b>Excellent</b><span class="tp"><i><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i><svg viewBox="0 0 24 24"><use href="#star"/></svg></i></span><span><b>147</b> Reviews</span></div>
+  <div class="stars-tp"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg><b>GRA Certified</b><span>Authenticity Guaranteed</span></div>
   <div class="mid"><a href="#/shop/best">Hand-Set VVS Moissanite · Passes The Diamond Tester</a></div>
   <div class="right"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7M5.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM17.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg><span>Free Worldwide Shipping</span></div>
 </div></div>
@@ -878,21 +904,25 @@ img{max-width:100%}
     </div>
   </div></section>
 
-  <!-- VIDEO REVIEWS -->
-  <section class="section" id="vidrev-anchor" style="padding-top:0"><div class="wrap">
-    <div class="sec-head rv"><div class="eg">Caught On Camera</div><h2>Customer Video Reviews</h2><p>Real unboxings from real customers. Tap any clip to watch full-screen.</p></div>
-    <div class="vidrail rv" id="vidRail"></div>
+  <!-- THE KINGPIN PROMISE (replaces video reviews) -->
+  <section class="section promise rv" id="vidrev-anchor" style="padding-top:0"><div class="wrap">
+    <div class="sec-head rv"><div class="eg">The KINGPIN Promise</div><h2>Every Piece, Guaranteed</h2><p>What you get with every KINGPIN order — no fine print.</p></div>
+    <div class="promise-grid">
+      <div class="prcard"><span class="pic"><svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l3 6 3-6"/></svg></span><b>Diamond-Tester Verified</b><span class="d">Genuine VVS moissanite that reads as a real diamond on any standard tester.</span></div>
+      <div class="prcard"><span class="pic"><svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></span><b>GRA Certified</b><span class="d">A GRA certificate ships with every stone — carat, cut, color &amp; clarity.</span></div>
+      <div class="prcard"><span class="pic"><svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg></span><b>Lifetime Warranty</b><span class="d">Covered for life against defects and stone loss. Wear it with confidence.</span></div>
+      <div class="prcard"><span class="pic"><svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7M5.5 18a1.5 1.5 0 100-3M17.5 18a1.5 1.5 0 100-3"/></svg></span><b>Free Insured Shipping</b><span class="d">Fully insured, tracked worldwide — plus a 30-day money-back guarantee.</span></div>
+    </div>
   </div></section>
 
-  <!-- REVIEWS -->
-  <section class="section revwrap"><div class="wrap">
-    <div class="sec-head rv"><div class="eg">Verified & Loved</div><h2>What Kings Are Saying</h2></div>
-    <div class="revtop rv">
-      <div class="sc">4.9</div>
-      <div class="tp"><i><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i><svg viewBox="0 0 24 24"><use href="#star"/></svg></i></div>
-      <div class="mt">Based on 147 verified reviews<br>Rated <b class="blue">Excellent</b> · 147 five-star reviews</div>
+  <!-- EDITORIAL (replaces text reviews) -->
+  <section class="section editorial rv"><div class="wrap">
+    <div class="ed-inner">
+      <div class="eg">Iced Out Without The Markup</div>
+      <h2>Same Blinding Ice. None Of The Diamond Price.</h2>
+      <p>Every KINGPIN timepiece is hand-set with fully iced-out VVS moissanite — D-color, flawless fire, and the exact look of a five-figure diamond watch. We sell direct, so you get the shine, the certificate and the lifetime warranty without the luxury-house markup.</p>
+      <a href="#/shop/best" class="btn btn-primary btn-lg">Shop The Collection</a>
     </div>
-    <div class="revg" id="revGrid"></div>
   </div></section>
 
   <!-- EMAIL CTA -->
@@ -919,8 +949,7 @@ img{max-width:100%}
     <div class="pinfo">
       <div class="mat" id="pType"></div>
       <h1 id="pName"></h1>
-      <div class="raterow"><span class="stars" id="pStars"></span><a href="#reviews-tab">See reviews</a>
-        <span class="sold"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> <span id="soldN"></span>+ sold this month</span></div>
+      <div class="raterow trustrow"><span class="tg"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg> Passes Diamond Tester</span><span class="tg"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg> GRA Certified</span><span class="tg"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg> VVS Moissanite</span></div>
       <div class="priceblk"><span class="now" id="pNow"></span><span class="was" id="pWas"></span><span class="save" id="pSave"></span></div>
       <div class="countdown"><svg width="18" height="18" fill="none" stroke="#a85d08" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         <span class="lab">Sale ends soon</span>
@@ -976,7 +1005,7 @@ img{max-width:100%}
   <section class="tabsec" id="reviews-tab">
     <div class="tabhead">
       <button class="on" data-t="desc">Description</button><button data-t="specs">Specifications</button>
-      <button data-t="warr">Warranty & Shipping</button><button data-t="rev">Reviews</button><button data-t="faq">FAQ</button></div>
+      <button data-t="warr">Warranty & Shipping</button><button data-t="faq">FAQ</button></div>
     <div class="tabpane on" data-p="desc"><p id="descText"></p>
       <p>Each KINGPIN LUX timepiece is hand-finished and individually inspected by master setters. Stones are hand-set for maximum brilliance and presented in our signature luxury box with an authenticity card.</p></div>
     <div class="tabpane" data-p="specs"><table class="spectable" id="specTable"></table></div>
@@ -984,7 +1013,6 @@ img{max-width:100%}
       <p><b>Lifetime Warranty.</b> Every piece is covered for life against manufacturing defects and stone loss.</p>
       <p><b>Free Worldwide Shipping.</b> Every order is fully insured and tracked door to door.</p>
       <p><b>30-Day Returns.</b> Not in love? Return within 30 days for a full refund, no questions asked.</p></div>
-    <div class="tabpane" data-p="rev"><div id="revInline"></div></div>
     <div class="tabpane faqb" data-p="faq"><div id="faqBox"></div></div>
   </section>
 
@@ -1430,7 +1458,7 @@ function card(p){const off=Math.round((1-p.now/p.was)*100);
   return `<div class="pcard"><a class="pmedia" href="#/product/${p.id}"><div class="ptags"><span class="tag tag-stock">In Stock</span><span class="tag tag-sale">Sale ${off}%</span></div><img loading="lazy" decoding="async" src="${img(p.img)}" alt="${p.name} — iced out ${p.stone} watch, ${p.type}"></a>
    <button class="pwish" data-wish="${p.id}" aria-label="wishlist"><svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-9C1 9 2.5 5 6.5 5 9 5 11 7 12 8.5 13 7 15 5 17.5 5 21.5 5 23 9 21.5 12c-2.5 4.4-9.5 9-9.5 9z"/></svg></button>
    <div class="pquick"><button class="add" data-add="${p.id}">Add To Cart</button></div>
-   <div class="pbody"><div class="mat">${p.stone}</div><h3><a href="#/product/${p.id}">${p.name}</a></h3><span class="stars">${stars(p.rating,p.rc)}</span><div class="price"><span class="now">${money(p.now)}</span><span class="was">${money(p.was)}</span></div></div></div>`;}
+   <div class="pbody"><div class="mat">${p.stone}</div><h3><a href="#/product/${p.id}">${p.name}</a></h3><span class="cert-tag"><svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg> GRA Certified · Tester-Verified</span><div class="price"><span class="now">${money(p.now)}</span><span class="was">${money(p.was)}</span></div></div></div>`;}
 function bindCards(scope){(scope||document).querySelectorAll("[data-add]").forEach(b=>b.onclick=e=>{e.preventDefault();KP.add(+b.dataset.add);toast("Added to cart");openDrawer();});
   (scope||document).querySelectorAll("[data-wish]").forEach(b=>{if(KP.inWish(+b.dataset.wish))b.classList.add("on");b.onclick=e=>{e.preventDefault();const on=KP.toggleWish(+b.dataset.wish);b.classList.toggle("on",on);if(on)toast("Saved to wishlist");};});}
 
@@ -1481,11 +1509,7 @@ function buildHome(){
   // lookbook
   const wildImgs=[[L.lineup,"t1"],[L.abcd,"t2"],[L.abc,"t3"],[L.rosegold,"t4"],[L.kpfive,"t5"],[L.tester,"t6"],[L.kpchain,"t7"],[L.chain,"t8"]].filter(w=>w[0]);
   $("#wildGrid").innerHTML=wildImgs.map(w=>`<div class="wt ${w[1]}"><img loading="lazy" decoding="async" src="${w[0]}" alt="KINGPIN iced out moissanite watch"></div>`).join("");
-  // reviews
-  const reviews=[["The detail is unreal. Looks 10x the price and the moissanite doesn't stop sparkling.","Marcus D.","M","https://i.ibb.co/KzcWSntL/Chat-GPT-Image-Jun-4-2026-01-30-37-AM.png"],["Shipped fast, packaging is insane, and the VVS moissanite outshines my friend's real diamond piece.","Andre K.","A","https://i.ibb.co/VpbsyJWt/Chat-GPT-Image-Jun-4-2026-02-49-59-AM.png"],["Third watch from KINGPIN. Quality control is flawless every time.","Sofia R.","S","https://i.ibb.co/nMG4yrJT/Chat-GPT-Image-May-28-2026-11-19-20-PM.png"]];
-  $("#revGrid").innerHTML=reviews.map((r,i)=>`<div class="rc-rev rv" data-d="${i+1}"><div class="ph"><img loading="lazy" decoding="async" src="${r[3]}"></div><div class="bd"><span class="stars">${stars(5)}</span><p>"${r[0]}"</p><div class="who"><div class="av">${r[2]}</div><div><div class="nm">${r[1]}</div><div class="vf"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg> Verified Purchase</div></div></div></div></div>`).join("");
   $("#joinBtn").onclick=()=>{const e=$("#email").value;if(/^[^@]+@[^@]+\.[^@]+$/.test(e)){KP.saveEmail(e,"footer-circle");$("#cok").style.display="block";$("#email").value="";}else $("#email").focus();};
-  buildVideoRail();
 }
 
 /* ---------- VIDEO REVIEWS (rail + fullscreen feed) ---------- */
@@ -1562,10 +1586,8 @@ function buildProduct(id){
   const P=prod(id)||KP_PRODUCTS[0];
   document.title="KINGPIN LUX — "+P.name;
   $("#crumbName").textContent=P.name;$("#pType").textContent=P.type;$("#pName").textContent=P.name;
-  $("#pStars").innerHTML=stars(P.rating,P.rc);
   $("#pNow").textContent=money(P.now);$("#pWas").textContent=money(P.was);
   const off=Math.round((1-P.now/P.was)*100);$("#pSave").textContent="Save "+off+"%";
-  $("#soldN").textContent=8+(P.id*3)%27;
   $("#stockLeft").textContent="Only "+P.stock+" left in stock";$("#stockFill").style.width=Math.min(100,P.stock*9+8)+"%";
   $("#viewN").textContent=12+(P.id*5)%30;$("#descText").textContent=P.desc;
   $("#galTags").innerHTML=`<span class="tag tag-stock">In Stock</span><span class="tag tag-sale">Sale ${off}%</span>`;
@@ -1591,9 +1613,7 @@ function buildProduct(id){
     <div class="total"><div class="tt">Bundle total</div><div class="tv">${money(P.now+ext.now)}</div></div>
     <button class="btn btn-primary" id="fbtAdd">Add Both</button></div>`;
   $("#fbtAdd").onclick=()=>{KP.add(P.id);KP.add(ext.id);toast("Bundle added");openDrawer();};
-  // inline reviews + faq
-  const rv=[["Outshines watches 5x the price. Insane sparkle.","Marcus D."],["Packaging and quality are elite. Buying again.","Andre K."],["Compliments everywhere I go. Worth every cent.","Khalid M."]];
-  $("#revInline").innerHTML=rv.map(r=>`<div style="border-bottom:1px solid var(--line2);padding:18px 0"><span class="stars">${stars(5)}</span><p style="font-size:16px;color:var(--ink);margin:10px 0 8px;font-weight:500">"${r[0]}"</p><div style="font-size:13px;font-weight:700;color:var(--ink)">${r[1]} <span style="color:var(--ok)">✓ Verified</span></div></div>`).join("");
+  // faq
   const faqs=[["Is this real diamond?","No — every KINGPIN piece is set with lab-grown VVS moissanite, not diamond. Moissanite is harder-wearing, more brilliant, and a fraction of the price, so you get maximum shine without the diamond markup."],["Will it pass a diamond tester?","Yes. Moissanite reads as diamond on most standard handheld testers due to its thermal and electrical properties."],["Why only $900 when these look like $5k+?","Because they're hand-set VVS moissanite, not mined diamond, and we sell direct with no middlemen. You get the same blinding, diamond-tester-passing look for a fraction of what a diamond piece would run."],["What's the warranty?","Every KINGPIN piece carries a lifetime warranty against defects and stone loss."],["How fast is shipping?","Free worldwide, fully insured and tracked. Delivery is typically 3–6 business days depending on your location."]];
   $("#faqBox").innerHTML=faqs.map(f=>`<details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("");
   // related + recent
